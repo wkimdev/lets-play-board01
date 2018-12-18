@@ -6,9 +6,12 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Main page!  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<%-- <P> ${} 님 환영합니다.</P> --%>
+<P>login</P>
+<P>join</P>
 </body>
 </html>
