@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="" method="post" >
+	<form action="${cp}/members/join" method="post" commandName="memberVO">
 		<table>
 			<tr>
 				<td>ID</td>
@@ -26,9 +26,16 @@
 				<td>Mail</td>
 				<td><form:input path="Mail" /></td>
 			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="Join" >
+					<input type="reset" value="Cancel" >
+				</td>
+			</tr>
 			
 		</table>
 	</form>
-
+	
+	<a href="${cp}/">MAIN</a>
 </body>
 </html>
