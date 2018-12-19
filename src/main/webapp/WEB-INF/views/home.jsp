@@ -11,7 +11,8 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <%-- <P> ${} 님 환영합니다.</P> --%>
-<P>login</P>
-<P>join</P>
+<P>login button</P>
+<P>join button</P>
+<p>member list</p>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 
 import org.junit.Test;
@@ -20,5 +21,15 @@ public class DBConnectTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void getMemberList() {
+		
+	}
+	
+	@Test
+	public void getMemberInsert() {
+		
 	}
 }
