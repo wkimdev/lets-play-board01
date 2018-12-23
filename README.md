@@ -12,10 +12,12 @@
 - 디비에 member table생성, 인증 정보가 남을 컬럼도 하나 필요함.
 
 #### 기본 crud부터
-- 1. select test 하고 controller, service 만들기 
-- 2. insert test 하고 controller, service 만들기
-- 3. 1번 내용 화면에 구현하기.
-- 4. 2번 내용 화면에 구현하기.   
+- 1. select test 하고 controller, service 만들기(select all 이 안됨..) 
+- 2. insert test 하고 controller, service 만들기(test 완료)
+- 3. login 구현하기
+- 3. update 구현 (login 이후 가능 액션)
+- 4. delete 구현 (login 이후 가능 액션)
+- 5. 정리
 
 
 # add

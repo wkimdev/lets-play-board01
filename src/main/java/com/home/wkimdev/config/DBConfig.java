@@ -2,6 +2,7 @@ package com.home.wkimdev.config;
 
 import java.beans.PropertyVetoException;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
@@ -9,6 +10,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 public class DBConfig {
 	
+	@Bean
 	public ComboPooledDataSource dataSource() throws PropertyVetoException {
 		
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();

@@ -19,6 +19,20 @@ public class MemberService implements IMemberService {
 	private MemberDAO memberDAO;
 	
 	@Override
+	public List<MemberVO> getMemberIdList() {
+		List<MemberVO> members = memberDAO.memberFindAllId();
+		
+		LOG.debug("MemberService start~!!!!!!!");
+		
+		if(members == null) {
+			LOG.debug("no member id exist");
+		} else {
+			LOG.debug("select success~~");
+		}
+		return members;
+	}
+	
+	@Override
 	public MemberVO getMemberList(MemberVO memberVO) {
 		MemberVO members = memberDAO.memberSelect(memberVO);
 		
@@ -42,7 +56,40 @@ public class MemberService implements IMemberService {
 		}
 		
 	}
-	
+
+	@Override
+	public MemberVO memberModify(MemberVO memberVO) {
+		int result = memberDAO.memberUpdate(memberVO);
+		
+		if(result == 0) {
+			LOG.debug("update fail~!!!");
+			return null;
+		} else {
+			LOG.debug("update success~!!");
+		}
+		
+		return memberVO;
+	}
+
+	@Override
+	public int memberRemove(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public MemberVO memberSearch(MemberVO memberVO) {
+		
+		MemberVO members = memberDAO.memberSelect(memberVO);
+		
+		if (members == null) {
+			LOG.debug("login fail");
+		} else {
+			LOG.debug("login success");
+		}
+		
+		return members;
+	}
 
 	
 }

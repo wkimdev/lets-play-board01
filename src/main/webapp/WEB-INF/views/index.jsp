@@ -14,5 +14,7 @@
 <P>login button</P>
 <P>join button</P>
 <p>member list</p>
+<!-- db에 있는 id list 가져오기 -->
+ID : ${member.memId} </br> 
 </body>
 </html>

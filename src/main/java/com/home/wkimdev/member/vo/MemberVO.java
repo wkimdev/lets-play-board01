@@ -5,9 +5,15 @@ public class MemberVO {
 	private String memId;
 	private String memPw;
 	private String memMail;
-	private String name;
+	private String memName;
 	private int memPurcNum;
 	
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
 	public String getMemId() {
 		return memId;
 	}
@@ -25,12 +31,6 @@ public class MemberVO {
 	}
 	public void setMemMail(String memMail) {
 		this.memMail = memMail;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public int getMemPurcNum() {
 		return memPurcNum;

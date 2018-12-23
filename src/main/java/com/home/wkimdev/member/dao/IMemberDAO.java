@@ -1,5 +1,8 @@
 package com.home.wkimdev.member.dao;
 
+import java.util.List;
+
+import com.ho.lec24.member.Member;
 import com.home.wkimdev.member.vo.MemberVO;
 
 public interface IMemberDAO {
@@ -9,5 +12,14 @@ public interface IMemberDAO {
 	
 	// select
 	MemberVO memberSelect(MemberVO memberVO);
+	
+	// select Id
+	List<MemberVO> memberFindAllId();
+	
+	// update
+	int memberUpdate(MemberVO memberVO);
+	
+	// delete 
+	int memberDelete(MemberVO memberVO);
 	
 }
