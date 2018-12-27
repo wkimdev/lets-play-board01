@@ -46,6 +46,36 @@ public class memberController {
 		return dateFormat.format(date);
 	}
 	
+	// LOGIN
+	@RequestMapping("/loginForm")
+	public String loginForm(MemberVO memberVO) {
+		return "/member/loginForm";
+	}
+	
+	// login post action
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String memLogin(MemberVO memberVO, HttpSession session) {
+		
+		MemberVO mem = memberService.memberSearch(memberVO);
+		if(mem == null) {
+			return "member/loginForm";
+		}
+		
+		session.setAttribute("memberVO", mem);
+		
+		return "member/loginOk";
+	}
+	
+	// LOGOUT 		// members/logout
+	@RequestMapping("/logout")
+	public String memberLogout(MemberVO memberVO, HttpSession session) {
+		
+		session.invalidate();
+
+		return "member/logoutOk";
+	}
+	
+	
 	@RequestMapping("/memberId")
 	public ModelAndView memberFindAllId(){
 //		List<MemberVO> member = memberService.getMemberIdList(); 	
@@ -103,7 +133,7 @@ public class memberController {
 	
 	
 	// jsp 화면 호출
-	@RequestMapping(value = "/modifyForm")
+	@RequestMapping("/modifyForm")
 	public ModelAndView modifyForm(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -112,9 +142,9 @@ public class memberController {
 		ModelAndView mav = new ModelAndView();
 		// session이 물고온 user정보를 가져와야 함.
 		mav.addObject("memberVO", memberService.memberSearch(memberVO));
-		mav.setViewName("member/modifyForm");
+		mav.setViewName("member/memberModify");
 		
-		return null;
+		return mav;
 	}
 	
 	// jsp 화면에서 post요청할때 아래 실행
@@ -122,20 +152,55 @@ public class memberController {
 	public ModelAndView memberModify(MemberVO memberVO, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 		//mav.addObject(attributeValue)
 		
 		MemberVO members = memberService.memberModify(memberVO);
 		if(members == null) {
-			mav.setViewName("/member/modifyForm");
+			mav.setViewName("/member/memberModify");
 		} else {
-			LOG.debug("don't know...");
-//			session.setAttribute("member", members);
-//			
-//			mav.addObject("memAft", members);
-//			mav.setViewName("/member/modifyOk");
+			session.setAttribute("memberVO", members);
+			
+			// modify 한다. memAft애가 모지
+			mav.addObject("memAft", members);
+			mav.setViewName("/member/modifyOk");
 		}
 		
 		return mav;
+	}
+	
+	// member remove jsp 화면 호출
+	@RequestMapping("/memberRemoveForm")
+	public ModelAndView removeForm(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		
+		ModelAndView mav = new ModelAndView();
+		// session이 물고온 user정보를 가져와야 함.
+		mav.addObject("memberVO", memberService.memberSearch(memberVO));
+		mav.setViewName("member/memberRemoveForm");
+		
+		return mav;
+	}
+	
+	// jsp 화면에서 post요청할때 아래 실행
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String memberRemove(MemberVO memberVO, HttpServletRequest request) {
+		
+		// delete sql execute
+		// session delete
+		
+		int result = memberService.memberRemove(memberVO);
+		
+		if(result == 0) {
+			return "/member/memberRemoveForm";
+		}
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "/member/removeOk";
 	}
 	
 	

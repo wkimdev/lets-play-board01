@@ -23,6 +23,14 @@
 	
 	<context:component-scan base-package="com.home.wkimdev" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/members/memberModify"/>
+			<mapping path="/members/memberRemoveForm"/>
+		<beans:bean class="com.home.wkimdev.member.MemberLoginInterceptor"/>
+	</interceptor>
+	</interceptors>
+	
 	
 	
 </beans:beans>

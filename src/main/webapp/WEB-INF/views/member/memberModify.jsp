@@ -13,7 +13,7 @@
 
 <h1>member modify</h1>
 
-<form:form action="${cp}/member/modify" method="post" commandName="memberVO">
+<form:form action="${cp}/members/modify" method="post" commandName="memberVO">
 	<table>
 		<tr>
 			<td>ID</td>
@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<td>MAIL</td>
-			<td><form:input path="memMail" value="${member.memMail}" /></td>
+			<td><form:input path="memMail" value="${memberVO.memMail}" /></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="Modify"></td>

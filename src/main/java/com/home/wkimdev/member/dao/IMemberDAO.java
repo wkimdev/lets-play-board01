@@ -2,7 +2,6 @@ package com.home.wkimdev.member.dao;
 
 import java.util.List;
 
-import com.ho.lec24.member.Member;
 import com.home.wkimdev.member.vo.MemberVO;
 
 public interface IMemberDAO {

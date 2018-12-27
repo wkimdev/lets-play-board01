@@ -1,6 +1,7 @@
 package com.home.wkimdev.member.dao;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -79,23 +79,21 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public MemberVO memberSelect(final MemberVO memberVO) {
 		
-		int result = 0;
-		
 		List<MemberVO> members = null;
 		
 		final String sql = "select * from member WHERE memId = ? AND memPw = ?";
+		LOG.debug(sql);
 		
 		members = template.query(sql, new Object[]{ memberVO.getMemId(), memberVO.getMemPw() }, new RowMapper<MemberVO>() {
 
 			@Override
 			public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				// TODO Auto-generated method stub
 				MemberVO mem = new MemberVO();
 				mem.setMemId(rs.getString("memId"));
-				mem.setMemName(rs.getString("memPw"));
-				mem.setMemPw(rs.getString("memMail"));
+				mem.setMemPw(rs.getString("memPw"));
+				mem.setMemName(rs.getString("memName"));
 				mem.setMemMail(rs.getString("memMail"));
-				mem.setMemPurcNum(rs.getInt("memPurnNum"));				
+				mem.setMemPurcNum(rs.getInt("memPurcNum"));				
 				return mem;
 			}
 		});
@@ -114,7 +112,7 @@ public class MemberDAO implements IMemberDAO {
 		// insert 완료
 		// insert into member(memId, name, memPw, memMail, memPurcNum) values('testId', 'wkimdev', '1234', 'test@test.com', 1111);
 		
-		final String sql = "insert into member(memId, name, memPw, memMail, memPurcNum) values(?, ?, ?, ?, ?)";
+		final String sql = "insert into member(memId, memName, memPw, memMail, memPurcNum) values(?, ?, ?, ?, ?)";
 		
 		result = template.update(sql, new PreparedStatementSetter() {
 
@@ -154,10 +152,21 @@ public class MemberDAO implements IMemberDAO {
 		return result;
 	}
 
+
 	@Override
-	public int memberDelete(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int memberDelete(final MemberVO memberVO) {
+		int result = 0;
+		
+		final String sql = "DELETE FROM member WHERE memId = ?";
+		
+		result = template.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, memberVO.getMemId());
+			}
+		});
+		return result;
 	}
 
 

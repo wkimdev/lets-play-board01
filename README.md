@@ -17,7 +17,7 @@
 - 3. login 구현하기
 - 3. update 구현 (login 이후 가능 액션)
 - 4. delete 구현 (login 이후 가능 액션)
-- 5. 정리
+- 5. 정리/다듬기
 
 
 # add

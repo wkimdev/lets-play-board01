@@ -1,7 +1,6 @@
 package com.home.wkimdev.member.service;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,6 @@ public class MemberService implements IMemberService {
 		} else {
 			LOG.debug("join success~!");
 		}
-		
 	}
 
 	@Override
@@ -73,8 +71,15 @@ public class MemberService implements IMemberService {
 
 	@Override
 	public int memberRemove(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = memberDAO.memberDelete(memberVO);
+		
+		if(result == 0) {
+			LOG.debug("delete fail~!!!");
+		} else {
+			LOG.debug("delete success~!!!");
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -90,6 +95,5 @@ public class MemberService implements IMemberService {
 		
 		return members;
 	}
-
 	
 }
