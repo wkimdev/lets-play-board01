@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<property name="SERVICE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} %-5level [%class{0} : %M] - %msg%n"/>
+	
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${SERVICE_LOG_PATTERN}</pattern>
+		</layout>
+	</appender>
+	
+	<property name="LOG_DIR" value="/Users/wkimdev/Documents/wkimdevLogs/shoppingmall/was/tomcat" />
+	
+	<!-- order Service 로그 -->
+	<appender name="ORDER_SERVICE_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/order-service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/log_backup/order-service.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${SERVICE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- delivery Service 로그 -->
+	<appender name="DELEVERY_SERVICE_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/delivery-service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/log_backup/delivery-service.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${SERVICE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<!--Service logger -->
+  	<logger name="com.home.wkimdev" level="INFO" >
+    	<appender-ref ref="ORDER_SERVICE_LOG_FILE" />
+  	</logger>
+  	
+  	<!--Service logger -->
+  	<logger name="com.home.wkimdev" level="INFO" >
+    	<appender-ref ref="DELEVERY_SERVICE_LOG_FILE" />
+  	</logger>
+  	
+</configuration>

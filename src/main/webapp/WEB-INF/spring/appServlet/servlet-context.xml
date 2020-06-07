@@ -22,15 +22,27 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<beans:bean id="commonLogginAdvice" class="com.home.wkimdev.aop.CommonLogginAdvice" />
+	<beans:bean id="serviceLoggingAdvice" class="com.home.wkimdev.aop.ServiceLoggingAdvice" />
 
 	<!-- AOP설정 -->
 	<aop:config>
-	    <!-- aspect id는 logger이고, orderLogModel를 참조함 -->
+	    <!-- aspect id는 orderLogger이고, orderLogModel를 참조함 -->
 	    <aop:aspect id="orderLogger" ref="commonLogginAdvice">
 	        <!-- pointcut(핵심 기능)의 id는 commonLog이고, com.home.wkimdev.schedule 패키지에 있는 모든 클래스에 공통 기능을 적용 -->
 	        <aop:pointcut id="commonLog" expression="within(com.home.wkimdev.schedule.*)"/>
 	        <!-- loggerAop()라는 공통 기능을 publicM라는 pointcut에 적용 -->
 	        <aop:around pointcut-ref="commonLog" method="loggerAop"/>
+	    </aop:aspect>
+	</aop:config>
+	
+	
+	<aop:config>
+	    <!-- aspect id는 serviceLogger이고, orderLogModel를 참조함 -->
+	    <aop:aspect id="serviceLogger" ref="serviceLoggingAdvice">
+	        <!-- pointcut(핵심 기능)의 id는 commonServiceLog이고, com.home.wkimdev.service 패키지에 있는 모든 클래스에 공통 기능을 적용 -->
+	        <aop:pointcut id="commonServiceLog" expression="within(com.home.wkimdev.service.*)"/>
+	        <!-- loggerAop()라는 공통 기능을 publicM라는 pointcut에 적용 -->
+	        <aop:around pointcut-ref="commonServiceLog" method="invoke"/>
 	    </aop:aspect>
 	</aop:config>
 

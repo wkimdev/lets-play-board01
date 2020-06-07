@@ -1,4 +1,4 @@
-package com.home.wkimdev;
+package com.home.wkimdev.loggging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class OrderLogModel {
 	String actionName;
 
 	public void getOrderLogModel() {
-		LOGGER.debug("주문 로깅 모델 출력...| {} | {} | {} | {}", getActionName(), getScheduleTime(), 
+		LOGGER.info("주문 로깅 모델 출력...| {} | {} | {} | {}", getActionName(), getScheduleTime(), 
 				getOrderCount(), getServiceName());
 	}
 	

@@ -1,7 +1,5 @@
 package com.home.wkimdev.loggging;
 
-import com.home.wkimdev.OrderLogModel;
-
 public class StandardLogUtils {
 	
 	// ThreadLocal를 사용하게 됨으로서, 변수의 유효범위가 특정 쓰레드 범위 내에서 유효해진다. 
